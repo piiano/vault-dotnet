@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NSwag.ApiDescription.Client" Version="13.20.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Tomlyn" Version="0.16.2" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <OpenApiReference Include="openapi.json">
+            <ClassName>GeneratedClient</ClassName>
+            <OutputPath>../generated/GeneratedClient.cs</OutputPath>
+            <CodeGenerator>NSwagCSharp</CodeGenerator>
+            <Options>/InjectHttpClient:true /DisposeHttpClient:true /UseBaseUrl:false /GenerateBaseUrlProperty:false /GenerateClientInterfaces:true /TypeAccessModifier:public /ArrayType:"System.Collections.Generic.IEnumerable" /ParameterArrayType:"System.Collections.Generic.IEnumerable" /ResponseArrayType:"System.Collections.Generic.IEnumerable" /DictionaryType:"System.Collections.Generic.IDictionary" /ClientClassAccessModifier:public /JsonLibrary:NewtonsoftJson /ExposeJsonSerializerSettings:true</Options>
+        </OpenApiReference>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Remove="obj\**" />
+    </ItemGroup>
+</Project>
