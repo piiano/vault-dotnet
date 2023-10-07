@@ -5,6 +5,19 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>default</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Piiano.Vault</PackageId>
+        <Title>Piiano.Vault</Title>
+        <Authors>Piiano</Authors>
+        <Description>.NET SDK client for Piiano Vault</Description>
+        <PackageProjectUrl>https://docs.piiano.com/</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/piiano/vault-dotnet/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/piiano/vault-dotnet</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <FileVersion>1.0.1</FileVersion>
+        <PackageTags>Vault,Piiano,.Net</PackageTags>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,13 +40,8 @@
     
     <ItemGroup>
       <Compile Remove="obj\**" />
-    </ItemGroup>
-    
-    <ItemGroup>
       <EmbeddedResource Remove="obj\**" />
-    </ItemGroup>
-    
-    <ItemGroup>
       <None Remove="obj\**" />
+      <None Include="../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>

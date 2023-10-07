@@ -1,4 +1,4 @@
-# vault-dotnet: A .Net SDK for Vault
+# Piiano.Vault: A .Net SDK for Vault
 
 vault-dotnet is a client SDK for the Vault written in C# for .Net 7.0.
 The underlying implementation of the SDK is auto-generated from the Vault OpenApi document.
