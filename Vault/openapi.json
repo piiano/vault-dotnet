@@ -7071,7 +7071,8 @@
                 "additionalProperties": false,
                 "properties": {
                     "db_schema_version": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "vault_id": {
                         "example": 1525298622245192000,
@@ -7957,7 +7958,8 @@
                 "properties": {
                     "worker_id": {
                         "description": "Worker id.",
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "generation_number": {
                         "description": "Generation number.",
