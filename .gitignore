@@ -9,6 +9,7 @@
 
 .idea/
 generated/
+Vault/openapi.json
 
 # User-specific files
 *.rsuser
