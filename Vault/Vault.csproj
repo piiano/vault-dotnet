@@ -20,6 +20,11 @@
         <Version>1.0.1</Version>
     </PropertyGroup>
 
+    <Target Name="OpenApiDownload" BeforeTargets="BeforeBuild">
+        <Message Text="Getting openapi.json from docs.piiano.com" Importance="high" />
+        <Exec Command="./prebuild.sh" />
+    </Target>
+
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NSwag.ApiDescription.Client" Version="13.20.0">
@@ -28,7 +33,7 @@
         </PackageReference>
         <PackageReference Include="Tomlyn" Version="0.16.2" />
     </ItemGroup>
-    
+          
     <ItemGroup>
         <OpenApiReference Include="openapi.json">
             <ClassName>GeneratedClient</ClassName>
