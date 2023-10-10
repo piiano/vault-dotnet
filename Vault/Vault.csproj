@@ -11,7 +11,7 @@
         <Authors>Piiano</Authors>
         <Description>.NET SDK client for Piiano Vault</Description>
         <PackageProjectUrl>https://docs.piiano.com/</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/piiano/vault-dotnet/blob/main/LICENSE</PackageLicenseUrl>
+        <License>https://github.com/piiano/vault-dotnet/blob/main/LICENSE</License>
         <RepositoryUrl>https://github.com/piiano/vault-dotnet</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <AssemblyVersion>1.0.1</AssemblyVersion>
