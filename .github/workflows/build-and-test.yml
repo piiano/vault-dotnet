@@ -3,10 +3,7 @@ on:
   push:
   workflow_dispatch:
   workflow_call:
-
-env:
-  PVAULT_SERVICE_LICENSE: ${{ secrets.PVAULT_SERVICE_LICENSE }}
-
+  
 jobs:
   test-dotnet:
     runs-on: ubuntu-latest
@@ -43,6 +40,8 @@ jobs:
           do echo "Waiting for the vault to start ..." && sleep 1; done
 
           dotnet test
-  
+        env:
+          PVAULT_SERVICE_LICENSE: ${{ secrets.PVAULT_SERVICE_LICENSE }}
+
       - name: Stop Vault.
         run: docker stop pvault-dev
