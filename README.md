@@ -14,7 +14,7 @@
 
 Safely store sensitive personal data in your own cloud environment with automated compliance controls. [More details](#about-piiano-vault)
 
-## Vault Microsoft .NET SDK
+## Microsoft .NET SDK for Vault
 
 This repository contains source code for [Vault .NET SDK](./Vault) and examples of use.
 
