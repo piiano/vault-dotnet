@@ -6,6 +6,7 @@ on:
   
 jobs:
   test-dotnet:
+    name: Test .NET SDK
     runs-on: ubuntu-latest
 
     steps: 
