@@ -46,12 +46,12 @@ The tests are organized into folders, one folder for each client.
 # Using the SDK
 
 1. Open Vault.sln in your IDE. You can use either Visual Studio or Rider (2023.2.2).
-2. Create your project in the solution and add a reference to Vault.
+2. Create your project in the solution.
 3. In your code:
    -  add `using Vault;`
    - create a client factory using: `var clientFactory = new ClientFactory();`
-6. The client factory provides properties that return clients for Vault API resources. Each client is exposed through an interface and wraps the automatically generated client.
-7. The client factory also provides a property called `Generated` that returns the underlying generated client. This client offers access to all the operations defined by the Vault OpenAPI document, though in a less convenient form.
+6. Add the client factory feature you require. For example, (code snippet) to (description of what the code snippet does).
+7. Use the `Generated` property to access any other operations defined by the Vault OpenAPI document. For example, (code snippet) to (description of what the code snippet does).
 
 ## Working with clients
 
