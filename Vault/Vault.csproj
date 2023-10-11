@@ -14,10 +14,10 @@
         <License>https://github.com/piiano/vault-dotnet/blob/main/LICENSE</License>
         <RepositoryUrl>https://github.com/piiano/vault-dotnet</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <AssemblyVersion>1.0.3</AssemblyVersion>
-        <FileVersion>1.0.3</FileVersion>
+        <AssemblyVersion>1.0.4</AssemblyVersion>
+        <FileVersion>1.0.4</FileVersion>
         <PackageTags>Vault,Piiano,.Net</PackageTags>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
     </PropertyGroup>
 
     <Target Name="OpenApiDownload" BeforeTargets="BeforeBuild">
