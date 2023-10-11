@@ -56,7 +56,7 @@ jobs:
           NEXT_VER=`npx --yes semver -i  ${{ inputs.bump-package }} ${CUR_VER}`
           sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE $NEXT_VER|g" Vault/README.md
           sed -i -E "s|$CUR_VER|$NEXT_VER|g" Vault/Vault.csproj
-          echo "::set-output name=version::${NEXT_VER}" 
+          echo "version==${NEXT_VER}" >>$GITHUB_OUTPUT
 
       - name: Build
         run: dotnet build
@@ -87,6 +87,9 @@ jobs:
 
       - name: Push to Nuget
         run: |
+          pwd
+          ls -la 
+          find .
           dotnet nuget push ./Vault/bin/Debug/Piiano.Vault.${{ steps.sdk-ver.outputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY}}
 
       - name: Commit and push changes
