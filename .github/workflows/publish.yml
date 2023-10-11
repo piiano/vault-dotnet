@@ -49,7 +49,6 @@ jobs:
         id: sdk-ver
         if: github.event_name == 'workflow_dispatch' && inputs.bump-package != 'none'
         run: |
-          set -x
           LINE='> This package version is'
           CUR_VER=`sed -n "s/$LINE \([^ ]*\).*/\1/p" Vault/README.md`
           NEXT_VER=`npx --yes semver -i  ${{ inputs.bump-package }} ${CUR_VER}`
