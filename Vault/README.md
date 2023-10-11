@@ -1,13 +1,3 @@
-<p>
-  <a href="https://piiano.com/pii-data-privacy-vault/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://docs.piiano.com/img/logo-developers-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://docs.piiano.com/img/logo-developers.svg">
-      <img alt="Piiano Vault" src="https://docs.piiano.com/img/logo-developers.svg" height="40" />
-    </picture>
-  </a>
-</p>
-
 # Piiano.Vault: a .Net SDK for Vault
 
 vault-dotnet is a client SDK for the Vault written in C# for Microsoft .NET 7.0.
