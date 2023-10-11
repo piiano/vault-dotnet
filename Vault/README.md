@@ -12,83 +12,71 @@
 
 vault-dotnet is a client SDK for the Vault written in C# for Microsoft .NET 7.0.
 The underlying implementation of the SDK is auto-generated from the Vault OpenApi document.
-
 > **Note:**
 > 
 > This package is compatible with Vault version 1.8.3.
 > For a Vault client compatible with other versions of Vault, check [other versions of this package](https://www.nuget.org/packages/Piiano.Vault#versions-body-tab).
 
+vault-dotnet is a client SDK for Vault written in C# for .Net 7.0.
+The underlying implementation of the SDK is auto-generated from the Vault OpenAPI document.
 
 # Contents 
 
 * [Documentation](#documentation)
-* [Repository Organization](#repository-organization)
-  * [The Vault Project](#the-vault-project)
-  * [The Vault.Tests Project](#the-vaulttests-project)
+* [Repository organization](#repository-organization)
+  * [The Vault project](#the-vault-project)
+  * [The Vault.Tests project](#the-vaulttests-project)
 * [Installation](#installation)
 * [Using the SDK](#using-the-sdk)
     * [Working with clients](#working-with-clients)
-  * [Working with a different server](#working-with-a-different-server)
-  * [Working with a different user](#working-with-a-different-user)
-
+@@ -18,19 +18,19 @@ The underlying implementation of the SDK is auto-generated from the Vault OpenAp
 # Documentation
 Refer to the API documentation at: https://docs.piiano.com/api/
 
-# Repository Organization
+# Repository organization
 The solution has two projects:
 - Vault: A library that provides the SDK.
-- Vault.Tests: A library contains tests of the SDK.
+- Vault.Tests: A library containing tests of the SDK.
 
-## The Vault Project
+## The Vault project
 
-The Vault project contains the OpenApi specification in its root: `openapi.json`.
+The Vault project's OpenAPI document, `openapi.json`, is in its root.
 
-When built, the project generates the file generated/GeneratedClient.cs from the Open API specification.
-The project defines the clients for each of the endpoint clients. Each one is a wrapper over the generated client and provides access to a group of endpoints.
+When built, the project generates the file `generated/GeneratedClient.cs` from the OpenAPI document.
+The Vault project defines the clients for each of the API resources. Each client is a wrapper over the generated client and provides access to API operations.
 
-## The Vault.Tests Project
+## The Vault.Tests project
 
 This project contains tests for each of the clients.
 The tests are organized into folders, one folder for each client.
-
-# Installation
-
-1. Install dot net 7.0 or later: https://docs.microsoft.com/en-us/dotnet/core/install/
-2. Install and run Vault locally or run in Piiano SaaS : https://docs.piiano.com/guides/get-started
-3. Run `dotnet build` in the root of the repository.
-4. Run `dotnet test` in the root of the repository.
-
+@@ -46,17 +46,18 @@ The tests are organized into folders, one folder for each client.
 # Using the SDK
 
 1. Open Vault.sln in your IDE. You can use either Visual Studio or Rider (2023.2.2).
-2. Create your own project in the solution and add a reference to Vault.
-3. In your code add `using Vault;`
-4. In your code, create a client factory using: `var clientFactory = new ClientFactory();`
-5. The client factory provides properties that return clients for groups of Vault endpoints. Each client is exposed through an interface and wraps the automatically generated client.
-6. In addition, the client factory provides a property called `Generated` that returns the underlying generated client. This client provides access to all methods defined by the Open API specification, though in a less convenient form.
+2. Create your project in the solution.
+3. In your code:
+   -  add `using Vault;`
+   - create a client factory using: `var clientFactory = new ClientFactory();`
+6. Add the client factory feature you require. For example, (code snippet) to (description of what the code snippet does).
+7. Use the `Generated` property to access any other operations defined by the Vault OpenAPI document. For example, (code snippet) to (description of what the code snippet does).
 
 ## Working with clients
 
-The client factory provides properties that return clients for Vault endpoints. Each client is exposed as an interface and provides access to a group of related endpoints. For example, the `System` property returns a client for the System endpoints with the `ISystem` interface.   
+The client factory provides properties that return clients for Vault resources. Each client is exposed as an interface and provides access to related operations. For example, the `System` property returns a client for the System resource with the `ISystem` interface.   
 
-The following table lists the clients that are implemented in this version of the SDK. For each client, it lists the interface that it implements and a reference to the documentation for the endpoints that it provides access to.
+Here is a list of the clients implemented in this version of the SDK. The interface it implements and a reference to the resource documentation are provided for each client.
 
 | Interface                | Returned by                          | Documentation                                      |
 |:-------------------------|:-------------------------------------|:---------------------------------------------------|
-| `ISystem`                | `ClientFactory.System`               | https://docs.piiano.com/api/system/                |
-| `IConfVar`               | `ClientFactory.ConfVar`              | https://docs.piiano.com/api/config-vars/           |
-| `IIAM`                   | `ClientFactory.IAM`                  | https://docs.piiano.com/api/iam/                   |
-| `ICollections`           | `ClientFactory.Collections`          | https://docs.piiano.com/api/collections/           |
-| `ICollectionProperties`  | `ClientFactory.CollectionProperties` | https://docs.piiano.com/api/collection-properties/ |
-| `IObjects`               | `ClientFactory.Objects`              | https://docs.piiano.com/api/objects/               |
+@@ -69,11 +70,11 @@ The following table lists the clients that are implemented in this version of th
 
 ### Working with a different server
 
-By default, the SDK is configured to work with the Vault server at `http://localhost:8123`.
+The SDK is configured to work with the Vault server at `http://localhost:8123` by default.
 To work with a different server, pass the server URL as the first argument to the constructor of the client factory.
 
 ### Working with a different user
 
-By default, the SDK is configured to work with the default token of the Admin user of Vault (`pvaultauth`).
+By default, the SDK is configured to work with the default token of the Vault Admin user (`pvaultauth`).
 To work with a different user, pass the user's token as the second argument to the constructor of the client factory.
-For more information on how to get a user's token, see https://docs.piiano.com/guides/manage-users-and-policies/regenerate-user-api-key
+For more information on how to get a user's token, see https://docs.piiano.com/guides/manage-users-and-policies/regenerate-user-api-key.
