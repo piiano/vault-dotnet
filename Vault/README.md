@@ -20,7 +20,9 @@ The underlying implementation of the SDK is auto-generated from the Vault OpenAP
 * [Installation](#installation)
 * [Using the SDK](#using-the-sdk)
     * [Working with clients](#working-with-clients)
-@@ -18,19 +18,19 @@ The underlying implementation of the SDK is auto-generated from the Vault OpenAp
+  * [Working with a different server](#working-with-a-different-server)
+  * [Working with a different user](#working-with-a-different-user)
+
 # Documentation
 Refer to the API documentation at: https://docs.piiano.com/api/
 
@@ -40,7 +42,15 @@ The Vault project defines the clients for each of the API resources. Each client
 
 This project contains tests for each of the clients.
 The tests are organized into folders, one folder for each client.
-@@ -46,17 +46,18 @@ The tests are organized into folders, one folder for each client.
+
+# Installation
+
+1. Install dot net 7.0 or later: https://docs.microsoft.com/en-us/dotnet/core/install/
+2. Install Vault Lite: https://docs.piiano.com/guides/install/
+3. Run Vault Lite.
+4. Run `dotnet build` in the root of the repository.
+5. Run `dotnet test` in the root of the repository.
+
 # Using the SDK
 
 1. Open Vault.sln in your IDE. You can use either Visual Studio or Rider (2023.2.2).
@@ -59,7 +69,12 @@ Here is a list of the clients implemented in this version of the SDK. The interf
 
 | Interface                | Returned by                          | Documentation                                      |
 |:-------------------------|:-------------------------------------|:---------------------------------------------------|
-@@ -69,11 +70,11 @@ The following table lists the clients that are implemented in this version of th
+| `ISystem`                | `ClientFactory.System`               | https://docs.piiano.com/api/system/                |
+| `IConfVar`               | `ClientFactory.ConfVar`              | https://docs.piiano.com/api/config-vars/           |
+| `IIAM`                   | `ClientFactory.IAM`                  | https://docs.piiano.com/api/iam/                   |
+| `ICollections`           | `ClientFactory.Collections`          | https://docs.piiano.com/api/collections/           |
+| `ICollectionProperties`  | `ClientFactory.CollectionProperties` | https://docs.piiano.com/api/collection-properties/ |
+| `IObjects`               | `ClientFactory.Objects`              | https://docs.piiano.com/api/objects/               |
 
 ### Working with a different server
 
