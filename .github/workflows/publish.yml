@@ -23,9 +23,6 @@ on:
           - major
 
 jobs:
-  call-test-workflow:
-    uses: ./.github/workflows/build-and-test.yml
-
   bump-and-update:
     name: prepare, bump and publish
     runs-on: ubuntu-latest
@@ -63,6 +60,30 @@ jobs:
 
       - name: Build
         run: dotnet build
+
+      - name: Start Vault and run tests
+        run: |
+          shopt -s expand_aliases
+          . .env
+          docker run --init --rm -d \
+            --name pvault-dev \
+            --add-host='host.docker.internal:host-gateway' \
+            -p 8123:8123 \
+            -e PVAULT_SERVICE_LICENSE=${PVAULT_SERVICE_LICENSE} \
+            -e PVAULT_SENTRY_ENABLE=false \
+            -e PVAULT_LOG_DATADOG_ENABLE=none \
+            piiano/pvault-dev:${VAULT_VERSION}
+          
+          alias pvault="docker run --rm -i --add-host='host.docker.internal:host-gateway' -v $(pwd):/pwd -w /pwd piiano/pvault-cli:latest"
+          until pvault status > /dev/null 2>&1
+          do echo "Waiting for the vault to start ..." && sleep 1; done
+
+          dotnet test
+        env:
+          PVAULT_SERVICE_LICENSE: ${{ secrets.PVAULT_SERVICE_LICENSE }}
+
+      - name: Stop Vault.
+        run: docker stop pvault-dev
 
       - name: Push to Nuget
         run: |
