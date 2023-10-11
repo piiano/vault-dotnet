@@ -13,7 +13,7 @@
         <PackageProjectUrl>https://docs.piiano.com/</PackageProjectUrl>
         <License>https://github.com/piiano/vault-dotnet/blob/main/LICENSE</License>
         <RepositoryUrl>https://github.com/piiano/vault-dotnet</RepositoryUrl>
-        <PackageReadmeFile>Vault/README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <AssemblyVersion>1.0.2</AssemblyVersion>
         <FileVersion>1.0.2</FileVersion>
         <PackageTags>Vault,Piiano,.Net</PackageTags>
