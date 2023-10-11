@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vault", "Vault\Vault.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vault.Tests", "Vault.Tests\Vault.Tests.csproj", "{AA4C8C7F-E93D-4A66-A05E-BC66377CB8E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vault.NuGetTests", "Vault.NuGetTests\Vault.NuGetTests.csproj", "{C2E3F518-1E84-4EB8-9830-E407C3DE83F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AA4C8C7F-E93D-4A66-A05E-BC66377CB8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA4C8C7F-E93D-4A66-A05E-BC66377CB8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA4C8C7F-E93D-4A66-A05E-BC66377CB8E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E3F518-1E84-4EB8-9830-E407C3DE83F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E3F518-1E84-4EB8-9830-E407C3DE83F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E3F518-1E84-4EB8-9830-E407C3DE83F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E3F518-1E84-4EB8-9830-E407C3DE83F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

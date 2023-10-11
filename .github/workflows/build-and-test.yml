@@ -38,7 +38,7 @@ jobs:
           until pvault status > /dev/null 2>&1
           do echo "Waiting for the vault to start ..." && sleep 1; done
 
-          dotnet test
+          dotnet test Vault.Tests
         env:
           PVAULT_SERVICE_LICENSE: ${{ secrets.PVAULT_SERVICE_LICENSE }}
 
