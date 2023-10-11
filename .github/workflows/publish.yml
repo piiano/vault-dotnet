@@ -1,0 +1,87 @@
+name: Publish
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      vault_version:
+        description: "Vault version"
+        required: true
+        type: string
+      bump-package:
+        description: |-
+          How to bump this package version:
+          - `none` - do not bump version
+          - `patch` - bump patch version
+          - `minor` - bump minor version
+          - `major` - bump major version
+        default: none
+        type: choice
+        options:
+          - none
+          - patch
+          - minor
+          - major
+
+jobs:
+  call-test-workflow:
+    uses: ./.github/workflows/build-and-test.yml
+
+  bump-and-update:
+    name: prepare, bump and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.CICD_RELEASES_PAT }}
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+            dotnet-version: '7.0.x'
+
+      - name: Update README and resources to reference Vault version ${{ inputs.vault_version }}
+        env:
+          LINE: compatible with Vault version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE ${{ inputs.vault_version }}|g" Vault/README.md
+          sed -i -E "s|VAULT_VERSION=[0-9]+\.[0-9]+\.[0-9]+|VAULT_VERSION=${{ inputs.vault_version }}|g" .env
+
+      - name: Update README to reference SDK version upgrade ${{ inputs.bump-package }}
+        id: sdk-ver
+        env:
+          LINE: This package version is
+        if: github.event_name == 'workflow_dispatch' && inputs.bump-package != 'none'
+        run: |
+          # find current version
+          CUR_VER=`sed -n "s/$LINE \([^ ]*\).*/\1/p" Vault/README.md`
+          NEXT_VER=`npx --yes semver -i  ${{ inputs.bump-package }} ${CUR_VER}`
+          sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE $NEXT_VER|g" Vault/README.md
+          sed -i -E "s|$CUR_VER|$NEXT_VER|g" Vault/Vault.csproj
+          echo "::set-output name=version::${NEXT_VER}" 
+
+      - name: Build
+        run: dotnet build
+
+      - name: Push to Nuget
+        run: |
+          dotnet nuget push ./Vault/bin/Debug/Piiano.Vault.${{ steps.sdk-ver.outputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY}}
+
+      - name: Commit and push changes
+        # even though we're checking for workflow_dispatch we still want to be extra safe and
+        # make sure we don't push changes to workflow that is triggered by push event.
+        if: github.event_name == 'workflow_dispatch' && github.event_name != 'push'
+        run: |
+          git config --global user.email "cicd@piiano.com"
+          git config --global user.name "Github Actions"
+          git_status=$(git status -s)
+
+          if [ -n "$git_status" ]; then
+            echo "There are changes to commit"
+            git add .env Vault/README.md Vault/Vault.csproj
+            git commit -a -m 'Update README.md and .env files to Vault version ${{ inputs.vault_version }}'
+            git push
+          else
+            echo "No changes to commit"
+          fi
