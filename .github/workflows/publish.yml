@@ -51,12 +51,14 @@ jobs:
           LINE: This package version is
         if: github.event_name == 'workflow_dispatch' && inputs.bump-package != 'none'
         run: |
-          # find current version
+          set -x
           CUR_VER=`sed -n "s/$LINE \([^ ]*\).*/\1/p" Vault/README.md`
           NEXT_VER=`npx --yes semver -i  ${{ inputs.bump-package }} ${CUR_VER}`
           sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE $NEXT_VER|g" Vault/README.md
+          echo "Replacing $CUR_VER with $NEXT_VER"
           sed -i -E "s|$CUR_VER|$NEXT_VER|g" Vault/Vault.csproj
-          echo "version==${NEXT_VER}" >>$GITHUB_OUTPUT
+          grep "1.0" Vault/Vault.csproj
+          echo "version=${NEXT_VER}" >>$GITHUB_OUTPUT
 
       - name: Build
         run: dotnet build
