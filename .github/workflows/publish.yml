@@ -47,11 +47,10 @@ jobs:
 
       - name: Update README to reference SDK version upgrade ${{ inputs.bump-package }}
         id: sdk-ver
-        env:
-          LINE: This package version is
         if: github.event_name == 'workflow_dispatch' && inputs.bump-package != 'none'
         run: |
           set -x
+          LINE='> This package version is'
           CUR_VER=`sed -n "s/$LINE \([^ ]*\).*/\1/p" Vault/README.md`
           NEXT_VER=`npx --yes semver -i  ${{ inputs.bump-package }} ${CUR_VER}`
           sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE $NEXT_VER|g" Vault/README.md
