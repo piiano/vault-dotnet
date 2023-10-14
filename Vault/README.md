@@ -49,7 +49,7 @@ The tests are organized into folders, one folder for each client.
 2. Install Vault Lite: https://docs.piiano.com/guides/install/
 3. Run Vault Lite.
 4. Run `dotnet build` in the root of the repository.
-5. Run `dotnet test` in the root of the repository.
+5. Run `dotnet test Vault.Tests` in the root of the repository.
 
 # Using the SDK
 
