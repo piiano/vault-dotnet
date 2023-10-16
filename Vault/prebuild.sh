@@ -1,7 +1,4 @@
-#!/bin/sh
-
-echo "Skipped until 1.8.4, then delete openapi.json from Vault folder"
-exit
+#!/bin/bash
 
 . ../.env
 OPENAPI_YAML=openapi.yaml
