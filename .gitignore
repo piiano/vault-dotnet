@@ -10,6 +10,7 @@
 .idea/
 generated/
 Vault/openapi.json
+.vscode
 
 # User-specific files
 *.rsuser
