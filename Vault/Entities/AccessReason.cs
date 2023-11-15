@@ -4,9 +4,9 @@ public struct AccessReason
 {
     public Reason Reason { get; }
 
-    public string OtherMessage { get; }
+    public string? OtherMessage { get; }
     
-    private AccessReason(Reason reason, string otherMessage = "")
+    private AccessReason(Reason reason, string? otherMessage = null)
     {
         Reason = reason;
         OtherMessage = otherMessage;
