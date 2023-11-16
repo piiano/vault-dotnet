@@ -31,6 +31,7 @@ public class ObjectsTests
         Assert.NotNull(await _client.ListObjectsAsync(new ListObjectsUnsafeArgs
         {
             CollectionName = CollectionsHelper.TestCollectionName,
+            Reason = AccessReason.Notifications
         }));
     }
 
