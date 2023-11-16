@@ -60,7 +60,7 @@ jobs:
       - name: Build
         run: dotnet build
 
-      - name: Start Vault and run tests
+      - name: Start Vault and run local tests
         run: |
           shopt -s expand_aliases
           . .env
@@ -77,12 +77,9 @@ jobs:
           until pvault status > /dev/null 2>&1
           do echo "Waiting for the vault to start ..." && sleep 1; done
 
-          dotnet test
+          dotnet test Vault.Tests
         env:
           PVAULT_SERVICE_LICENSE: ${{ secrets.PVAULT_SERVICE_LICENSE }}
-
-      - name: Stop Vault.
-        run: docker stop pvault-dev
 
       - name: Push to Nuget
         run: |
@@ -108,3 +105,10 @@ jobs:
           else
             echo "No changes to commit"
           fi
+
+      - name: Test the remote package
+        run: |
+          dotnet test Vault.NuGetTests
+  
+      - name: Stop Vault.
+        run: docker stop pvault-dev
