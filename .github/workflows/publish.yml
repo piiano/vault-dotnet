@@ -54,7 +54,9 @@ jobs:
           sed -i -E "s|$LINE [0-9]+\.[0-9]+\.[0-9]+|$LINE $NEXT_VER|g" Vault/README.md
           echo "Replacing $CUR_VER with $NEXT_VER"
           sed -i -E "s|$CUR_VER|$NEXT_VER|g" Vault/Vault.csproj
-          grep "1.0" Vault/Vault.csproj
+          sed -i -E "s|$CUR_VER|$NEXT_VER|g" Vault.NuGetTests/Vault.NuGetTests.csproj
+          echo "For debugging: should be replaced now"
+          grep "1.0" Vault/Vault.csproj Vault.NuGetTests/Vault.NuGetTests.csproj
           echo "version=${NEXT_VER}" >>$GITHUB_OUTPUT
 
       - name: Build
