@@ -36,6 +36,12 @@ jobs:
         with:
             dotnet-version: '7.0.x'
 
+      - name: Install Nuget
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: nuget
+          version: 1.0
+
       - name: Update README and resources to reference Vault version ${{ inputs.vault_version }}
         env:
           LINE: compatible with Vault version
@@ -106,6 +112,29 @@ jobs:
             git push
           else
             echo "No changes to commit"
+          fi
+
+      - name: Verify the new package is available
+        run: |
+          published=none
+          ver_expected="${{ steps.sdk-ver.outputs.version }}"
+          for i in {1..3}; do
+            online_package=$(nuget list Piiano.Vault)
+            echo "Published: ${online_package}, Expecting: ${ver_expected}"
+            published_ver=$(echo $online_package |  awk '{ print $2 }')
+            if [ ${published_ver} != ${ver_expected} ] ; then
+              echo "New version is not ready yet - attempt ${i}"
+              sleep 30
+            else
+              echo "Package is published"
+              published=done
+              break
+            fi
+          done
+
+          if [ ${published} = "none" ] ; then
+            echo "Nuget package is not published yet. Bailing out."
+            exit 1
           fi
 
       - name: Test the remote package
