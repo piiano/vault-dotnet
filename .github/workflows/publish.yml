@@ -32,10 +32,9 @@ jobs:
           token: ${{ secrets.CICD_RELEASES_PAT }}
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v1
         with:
             dotnet-version: '7.0.x'
-            cache: true
 
       - name: Install Nuget
         uses: awalsh128/cache-apt-pkgs-action@latest
@@ -67,7 +66,7 @@ jobs:
           echo "version=${NEXT_VER}" >>$GITHUB_OUTPUT
 
       - name: Build
-        run: dotnet build
+        run: dotnet build Vault
 
       - name: Start Vault and run local tests
         run: |
