@@ -22,6 +22,7 @@ public record AddObjectArgs : ObjectOperationArgs
     public string? ExpirationSecs { get; init; }
     public bool Import { get; init; }
     public string? ExportKey { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record AddObjectsArgs : ObjectOperationArgs
@@ -31,6 +32,7 @@ public record AddObjectsArgs : ObjectOperationArgs
     public string? ExpirationSecs { get; init; }
     public bool Import { get; init; }
     public string? ExportKey { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record DeleteObjectByIdArgs : ObjectOperationArgs
@@ -38,6 +40,7 @@ public record DeleteObjectByIdArgs : ObjectOperationArgs
     public required Guid ObjectId { get; init; }
 
     public bool Archived { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record DeleteObjectsArgs : ObjectOperationArgs
@@ -45,6 +48,7 @@ public record DeleteObjectsArgs : ObjectOperationArgs
     public required IEnumerable<Guid> ObjectIds { get; init; }
 
     public bool Archived { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public abstract record GetObjectByIdArgsBase : ObjectOperationArgs, IObjectOptions
@@ -53,6 +57,7 @@ public abstract record GetObjectByIdArgsBase : ObjectOperationArgs, IObjectOptio
 
     public bool Archived { get; init; }
     public string? ExtraTransParam { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record GetObjectByIdUnsafeArgs : GetObjectByIdArgsBase, IObjectOptionsUnsafe
@@ -73,6 +78,7 @@ public abstract record ListObjectsArgsBase : ObjectOperationArgs, IObjectOptions
     public bool Archived { get; init; }
     public IEnumerable<Guid>? ObjectIds { get; init; }
     public string? ExtraTransParam { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record ListObjectsUnsafeArgs : ListObjectsArgsBase, IObjectOptionsUnsafe
@@ -100,6 +106,7 @@ public abstract record SearchObjectsArgsBase : ObjectOperationArgs, IObjectOptio
     public string? Cursor { get; init; }
     public bool Archived { get; init; }
     public string? ExtraTransParam { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record SearchObjectsUnsafeArgs : SearchObjectsArgsBase, IObjectOptionsUnsafe
@@ -121,6 +128,7 @@ public record UpdateObjectByIdArgs : ObjectOperationArgs
     public bool Archived { get; init; }
     public bool Import { get; init; }
     public string? ExportKey { get; init; }
+    public IEnumerable<string>? XTenantId { get; init; }
 }
 
 public record UpdateObjectsArgs : AddObjectsArgs

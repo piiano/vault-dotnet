@@ -1,4 +1,4 @@
-﻿namespace Vault;
+namespace Vault;
 
 public class ObjectsClient : IObjectsClient
 {
@@ -34,6 +34,7 @@ public class ObjectsClient : IObjectsClient
             args.Cursor,
             args.Export,
             args.ExtraTransParam,
+            args.XTenantId,
             args.ObjectIds,
             ExtractOptions(args).ToAll<ObjectOptions, Anonymous4>(),
             ExtractProps(args),
@@ -49,6 +50,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
+            args.XTenantId,
             args.ExpirationSecs,
             args.Import,
             args.ExportKey,
@@ -67,6 +69,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
             args.ExtraTransParam,
+            args.XTenantId,
             ExtractOptions(args).ToAll<ObjectOptions, Anonymous14>(),
             ExtractProps(args),
             cancellationToken);
@@ -84,6 +87,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
+            args.XTenantId,
             args.ExpirationSecs,
             ExtractArchivedOption(args.Archived).ToAll<ArchivedOption, Anonymous15>(),
             args.Import,
@@ -103,6 +107,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
+            args.XTenantId,
             cancellationToken);
     }
 
@@ -115,6 +120,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
+            args.XTenantId,
             args.ExpirationSecs,
             args.Import,
             args.ExportKey,
@@ -135,6 +141,7 @@ public class ObjectsClient : IObjectsClient
             args.ReloadCache,
             args.Import,
             args.ExportKey,
+            args.XTenantId,
             args.Objects,
             cancellationToken);
     }
@@ -149,6 +156,7 @@ public class ObjectsClient : IObjectsClient
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
             args.ReloadCache,
+            args.XTenantId,
             args.ObjectIds.Select(id => new ObjectID { Id = id }),
             cancellationToken);
     }
@@ -165,6 +173,7 @@ public class ObjectsClient : IObjectsClient
             args.PageSize,
             args.Cursor,
             args.ExtraTransParam,
+            args.XTenantId,
             ExtractOptions(args).ToAll<ObjectOptions, Anonymous21>(),
             ExtractProps(args),
             args.Query,
