@@ -10,7 +10,7 @@ internal static class Extensions
         var names = ConvertToString(r);
         foreach (string name in names)
         {
-            if (Enum.TryParse(name, out T v))
+            if (Enum.TryParse(name, true, out T v))
             {
                 return v;
             }
