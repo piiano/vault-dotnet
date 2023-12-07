@@ -206,7 +206,7 @@ public class ObjectsClient : IObjectsClient
         options.Add(ObjectOptions.Unsafe);
         if (unsafeArgs.ShowBuiltins)
         {
-            options.Add(ObjectOptions.ShowBuiltins);
+            options.Add(ObjectOptions.Show_builtins);
         }
 
         return options;

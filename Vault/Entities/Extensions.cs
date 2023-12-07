@@ -31,7 +31,7 @@ internal static class Extensions
     public static IEnumerable<T>? ToOption<T>(this bool showBuiltins) where T : struct
     {
         return showBuiltins 
-            ? new [] {ShowBuiltinsOption.ShowBuiltins.To<T>()} 
+            ? new [] {ShowBuiltinsOption.Show_builtins.To<T>()}
             : null;
     }
 
