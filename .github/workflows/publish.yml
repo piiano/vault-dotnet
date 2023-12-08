@@ -139,6 +139,11 @@ jobs:
 
       - name: Test the remote package
         run: |
+          set -x
+          docker ps
+          docker run --rm -i --add-host='host.docker.internal:host-gateway' piiano/pvault-cli:latest status
+          dotnet clean Vault.NuGetTests
+          dotnet build Vault.NuGetTests
           dotnet test Vault.NuGetTests
   
       - name: Stop Vault.
