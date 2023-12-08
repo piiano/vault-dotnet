@@ -31,7 +31,22 @@ public class ObjectsTests
         Assert.NotNull(await _client.ListObjectsAsync(new ListObjectsUnsafeArgs
         {
             CollectionName = CollectionsHelper.TestCollectionName,
-            Reason = AccessReason.Notifications
+            Reason = AccessReason.Notifications,
+            ShowBuiltins = true
+        }));
+    }
+
+    [Test]
+    public async Task TestSearchObjects()
+    {
+        Assert.NotNull(await _client.SearchObjectsAsync(new SearchObjectsUnsafeArgs
+        {
+            ShowBuiltins = true,
+            CollectionName =  CollectionsHelper.TestCollectionName,
+            Query = new Query
+            {
+                Match = new MatchMap {{"CCCC", "Joe"}}
+            }
         }));
     }
 

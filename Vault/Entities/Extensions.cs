@@ -10,7 +10,7 @@ internal static class Extensions
         var names = ConvertToString(r);
         foreach (string name in names)
         {
-            if (Enum.TryParse(name, out T v))
+            if (Enum.TryParse(name, true, out T v))
             {
                 return v;
             }
@@ -31,7 +31,7 @@ internal static class Extensions
     public static IEnumerable<T>? ToOption<T>(this bool showBuiltins) where T : struct
     {
         return showBuiltins 
-            ? new [] {ShowBuiltinsOption.ShowBuiltins.To<T>()} 
+            ? new [] {ShowBuiltinsOption.Show_builtins.To<T>()}
             : null;
     }
 

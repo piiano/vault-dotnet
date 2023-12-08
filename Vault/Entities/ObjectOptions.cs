@@ -8,7 +8,7 @@ internal enum ObjectOptions
     Archived,
     
     [EnumMember(Value = "show_builtins")]
-    ShowBuiltins,
+    Show_builtins,
     
     [EnumMember(Value = "unsafe")]
     Unsafe
