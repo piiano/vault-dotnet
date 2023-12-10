@@ -13,7 +13,7 @@ on:
           - `patch` - bump patch version
           - `minor` - bump minor version
           - `major` - bump major version
-        default: none
+        default: patch
         type: choice
         options:
           - none
@@ -92,8 +92,8 @@ jobs:
       - name: Push to Nuget
         run: |
           pwd
-          ls -la 
-          find .
+          echo "SDK version: ${{ steps.sdk-ver.outputs.version }}"
+          find . -name ./Vault/bin/Debug/Piiano.Vault*.nupkg
           dotnet nuget push ./Vault/bin/Debug/Piiano.Vault.${{ steps.sdk-ver.outputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY}}
 
       - name: Commit and push changes
