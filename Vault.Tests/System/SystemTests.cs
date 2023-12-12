@@ -51,6 +51,10 @@ public class SystemTests
     public async Task TestLicenseKey()
     {
         string key = Environment.GetEnvironmentVariable("PVAULT_SERVICE_LICENSE")!;
+        if (String.IsNullOrEmpty(key))
+        {
+            return;
+        }
 
         await _client.SetLicenseAsync(
             new SetLicenseKeyArgs
