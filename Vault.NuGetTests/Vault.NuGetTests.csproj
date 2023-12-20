@@ -20,10 +20,10 @@
         <PackageReference Include="Piiano.Vault" Version="1.1.3" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Compile 
-                Include="..\Vault.Tests\**\*.cs" 
-                Exclude="..\Vault.Tests\obj\**;..\Vault.Tests\bin\**" />
-    </ItemGroup>
+    <!--<ItemGroup>-->
+    <!--    <Compile -->
+    <!--            Include="..\Vault.Tests\**\*.cs" -->
+    <!--            Exclude="..\Vault.Tests\obj\**;..\Vault.Tests\bin\**" />-->
+    <!--</ItemGroup>-->
 
 </Project>
