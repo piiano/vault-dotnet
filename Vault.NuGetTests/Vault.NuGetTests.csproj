@@ -21,8 +21,8 @@
     </ItemGroup>
 
     <!--<ItemGroup>-->
-    <!--    <Compile -->
-    <!--            Include="..\Vault.Tests\**\*.cs" -->
+    <!--    <Compile-->
+    <!--            Include="..\Vault.Tests\**\*.cs"-->
     <!--            Exclude="..\Vault.Tests\obj\**;..\Vault.Tests\bin\**" />-->
     <!--</ItemGroup>-->
 

@@ -29,7 +29,6 @@ public class ClientFactory
         Dictionary<string, string>? defaultRequestHeaders = null,
         TimeSpan? timeoutValue = null)
     {
-        Console.WriteLine("jaier");
         var httpClient = new HttpClient(new HttpInterceptor())
         {
             BaseAddress = new Uri(uriString),
