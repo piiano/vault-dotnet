@@ -58,11 +58,11 @@ The tests are organized into folders, one folder for each client.
 3. In your code:
    -  add `using Vault;`
    - create a client factory using: `var clientFactory = new ClientFactory();`
-   - ClientFactory have some optional params:
-      - uriString : Vault URL.
-      - userKey : Bearer token.
-      - defaultRequestHeaders : Dictionary of headers.
-      - timeoutValue : Client timeout.
+   - ClientFactory optional parameters:
+      - `uriString` : Vault URL.
+      - `userKey` : Bearer token.
+      - `defaultRequestHeaders` : Dictionary of HTTP headers.
+      - `timeoutValue` : Client timeout.
 6. Add the client factory feature you require. For example, (code snippet) to (description of what the code snippet does).
 7. Use the `Generated` property to access any other operations defined by the Vault OpenAPI document. For example, (code snippet) to (description of what the code snippet does).
 
