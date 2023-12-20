@@ -7,7 +7,7 @@ public class ClientFactory
 {
     private const string DefaultUriString = "http://localhost:8123";
     private const string InitialAdminUserKey = "pvaultauth";
-//    private const Dictionary<string, string> DefaultHeaders = new Dictionary<string, string>(){};
+
     public ICollectionsClient Collections { get; }
 
     public IObjectsClient Objects { get; }
