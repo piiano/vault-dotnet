@@ -1,12 +1,13 @@
 ﻿using System.Net.Http.Headers;
-
+using System.Collections.Generic;
+using System;
 namespace Vault;
 
 public class ClientFactory
 {
     private const string DefaultUriString = "http://localhost:8123";
     private const string InitialAdminUserKey = "pvaultauth";
-    
+
     public ICollectionsClient Collections { get; }
 
     public IObjectsClient Objects { get; }
@@ -24,7 +25,9 @@ public class ClientFactory
     
     public ClientFactory(
         string uriString = DefaultUriString,
-        string userKey = InitialAdminUserKey)
+        string userKey = InitialAdminUserKey,
+        Dictionary<string, string>? defaultRequestHeaders = null,
+        TimeSpan? timeoutValue = null)
     {
         var httpClient = new HttpClient(new HttpInterceptor())
         {
@@ -32,9 +35,22 @@ public class ClientFactory
             DefaultRequestHeaders =
             {
                 Authorization = AuthenticationHeaderValue.Parse($"Bearer {userKey}")
-            }
+            },
         };
-        
+
+        if (defaultRequestHeaders?.Count > 0)
+        {
+            foreach (var header in defaultRequestHeaders)
+            {
+                httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+            }
+        }
+
+        if (timeoutValue.HasValue)
+        {
+            httpClient.Timeout = timeoutValue.Value;
+        }
+
         GeneratedClient = new GeneratedClient(httpClient);
         Collections = new CollectionsClient(GeneratedClient);
         Objects = new ObjectsClient(GeneratedClient);

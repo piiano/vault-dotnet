@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Vault.Tests;
 
@@ -94,5 +95,14 @@ public class SystemTests
         var kms = await _client.GetKmsStatusAsync();
 
         Assert.NotNull(kms);
+    }
+
+    [Test]
+    public async Task TestAddHeaders()
+    {
+        // Init client with the headers
+        var client = new ClientFactory(defaultRequestHeaders: new Dictionary<string, string> { { "X-Pvault-Request-ID", "12345" } }).System;
+        var config = await client.GetConfigurationAsync();
+        Assert.NotNull(config);
     }
 }
