@@ -6,9 +6,9 @@ on:
   
 jobs:
   test-dotnet:
-    name: Test .NET SDK
+    name: Test .NET SDK by ${{ github.actor }}
     runs-on: ubuntu-latest
-
+    if: ${{ github.actor != 'piiano-cicd' }}
     steps: 
       - name: Checkout
         uses: actions/checkout@v3
