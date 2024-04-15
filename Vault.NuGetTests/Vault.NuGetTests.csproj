@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Piiano.Vault" Version="1.1.12" />
+        <PackageReference Include="Piiano.Vault" Version="1.1.13" />
     </ItemGroup>
 
     <ItemGroup>

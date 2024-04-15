@@ -4,7 +4,7 @@ vault-dotnet is a client SDK for the Vault written in C# for Microsoft .NET 7.0.
 The underlying implementation of the SDK is auto-generated from the Vault OpenApi document.
 > **Note:**
 > 
-> This package version is 1.1.12 and is compatible with Vault version 1.11.0 .
+> This package version is 1.1.13 and is compatible with Vault version 1.11.1 .
 
 > For a Vault client compatible with other versions of Vault, check [other versions of this package](https://www.nuget.org/packages/Piiano.Vault#versions-body-tab).
 
