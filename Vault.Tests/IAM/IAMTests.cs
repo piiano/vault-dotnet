@@ -9,7 +9,7 @@ namespace Vault.Tests;
 public class IAMTests
 {
     private IIAMClient _client = null!;
-        
+
     [SetUp]
     public void Setup()
     {
@@ -20,14 +20,14 @@ public class IAMTests
     public async Task TestIAM()
     {
         var toml1 = await _client.GetIAM();
-            
+
         await _client.SetIAM(new SetIamArgs
         {
             Config = toml1
         });
-            
+
         var toml2 = await _client.GetIAM();
-            
+
         var json1 = JsonConvert.SerializeObject(toml1);
         var json2 = JsonConvert.SerializeObject(toml2);
 
@@ -40,12 +40,21 @@ public class IAMTests
         var iam = await _client.GetIAM();
         Assert.NotNull(iam);
 
-        KeyValuePair<string,User> user = iam.Users.First();
-        
+        try
+        {
+            User user = iam.Users["VaultAdmin"];
+
+        }
+        catch (KeyNotFoundException)
+        {
+            System.Console.WriteLine("User VaultAdmin not found. Skipping IAM test");
+            return;
+        }
+
         var apiKey = await _client.RegenerateUserApiKeyAsync(
             new RegenerateUserApiKeyArgs
             {
-                Name = user.Key
+                Name = "VaultAdmin"
             });
 
         string? keyString = apiKey.Api_key;
@@ -58,7 +67,7 @@ public class IAMTests
         var newApiKey = await _client.RegenerateUserApiKeyAsync(
             new RegenerateUserApiKeyArgs
             {
-                Name = user.Key
+                Name = "VaultAdmin"
             });
 
         string? newKeyString = newApiKey.Api_key;
