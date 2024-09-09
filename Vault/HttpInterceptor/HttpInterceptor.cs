@@ -40,34 +40,36 @@ internal class HttpInterceptor : DelegatingHandler
         "expiration.associated_objects",
         "expiration.unassociated_objects",
         "service.cache_refresh_interval",
+        "service.cache_refresh_timeout",
         "service.archive_prune_interval",
+        "service.archive_prune_timeout",
         "service.stats_interval",
         "service.os_stats_interval",
         "service.config_report_interval",
     };
-    
+
     public HttpInterceptor()
         : base(new HttpClientHandler())
     {
     }
-    
+
     protected override async Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, 
+        HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
         if (request.Content?.Headers.ContentType?.MediaType == MediaTypeToml)
         {
             await JsonToToml(request, cancellationToken);
         }
-        
+
         Trace.WriteLine(request);
         HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-        
+
         if (response.Content.Headers.ContentType?.MediaType == MediaTypeToml)
         {
             return await TomlToJson(request, response, cancellationToken);
         }
-        
+
         Trace.WriteLine(response);
         return response;
     }
@@ -79,7 +81,7 @@ internal class HttpInterceptor : DelegatingHandler
             .FirstOrDefault(
                 kv => IsRequestToPath(request, kv.Key))
             .Value;
-        
+
         object jsonObject = JsonConvert.DeserializeObject(
             jsonContent,
             type)!;
@@ -88,10 +90,10 @@ internal class HttpInterceptor : DelegatingHandler
 
         request.Content = new StringContent(tomlContent, Encoding.UTF8, MediaTypeToml);
     }
-    
+
     private static async Task<HttpResponseMessage> TomlToJson(
-        HttpRequestMessage request, 
-        HttpResponseMessage response, 
+        HttpRequestMessage request,
+        HttpResponseMessage response,
         CancellationToken cancellationToken)
     {
         string tomlContent = await response.Content.ReadAsStringAsync(cancellationToken);
@@ -114,7 +116,7 @@ internal class HttpInterceptor : DelegatingHandler
             RequestMessage = response.RequestMessage
         };
     }
-    
+
     private static bool IsRequestToPath(HttpRequestMessage request, string path)
     {
         return request.RequestUri?.ToString().Contains(path) ?? false;
