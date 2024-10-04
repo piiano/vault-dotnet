@@ -46,6 +46,7 @@ internal class HttpInterceptor : DelegatingHandler
         "service.stats_interval",
         "service.os_stats_interval",
         "service.config_report_interval",
+        "service.substring_index_refresh_interval",
     };
 
     public HttpInterceptor()
