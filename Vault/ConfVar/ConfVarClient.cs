@@ -14,17 +14,19 @@ internal class ConfVarClient : IConfVarClient
         CancellationToken cancellationToken = default)
     {
         ConfVar variable = await _client.GetConfVarAsync(
+            "custom-audit",
             args.Name,
             cancellationToken);
 
         return variable.Value.ToString();
     }
-        
+
     public Task Set(
         SetConfVarArgs args,
         CancellationToken cancellationToken = default)
     {
         return _client.SetConfVarAsync(
+            "custom-audit",
             args.Name,
             new ConfVarValue
             {
@@ -37,6 +39,7 @@ internal class ConfVarClient : IConfVarClient
         CancellationToken cancellationToken = default)
     {
         return _client.ClearAllConfVarsAsync(
+            "custom-audit",
             cancellationToken);
     }
 }
