@@ -22,7 +22,6 @@ internal class CollectionsClient : ICollectionsClient
     {
         return _client.ListCollectionsAsync(
             format: Format.Json,
-            "custom-audit",
             args.ShowBuiltins.ToOption<Anonymous>(),
             cancellationToken);
     }
@@ -33,7 +32,6 @@ internal class CollectionsClient : ICollectionsClient
     {
         return _client.GetCollectionAsync(
             args.CollectionName,
-            "custom-audit",
             format: Format.Json,
             args.ShowBuiltins.ToOption<Anonymous9>(),
             cancellationToken);
@@ -45,7 +43,6 @@ internal class CollectionsClient : ICollectionsClient
     {
         return _client.AddCollectionAsync(
             format: Format.Json,
-            "custom-audit",
             args.ShowBuiltins.ToOption<Anonymous2>(),
             args.Collection,
             cancellationToken);
@@ -58,7 +55,6 @@ internal class CollectionsClient : ICollectionsClient
         return _client.UpdateCollectionAsync(
             args.CollectionName,
             format: Format.Json,
-            "custom-audit",
             args.ShowBuiltins.ToOption<Anonymous10>(),
             args.Collection,
             cancellationToken);
@@ -66,11 +62,10 @@ internal class CollectionsClient : ICollectionsClient
 
     public Task DeleteAsync(
         DeleteCollectionArgs args,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default) 
     {
         return _client.DeleteCollectionAsync(
             args.CollectionName,
-            "custom-audit",
-            cancellationToken);
+            cancellationToken);   
     }
 }

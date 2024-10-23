@@ -13,7 +13,6 @@ public class IAMClient : IIAMClient
         CancellationToken cancellationToken = default)
     {
         return _client.GetIamConfAsync(
-            "custom-audit",
             cancellationToken);
     }
 
@@ -22,7 +21,6 @@ public class IAMClient : IIAMClient
         CancellationToken cancellationToken = default)
     {
         await _client.SetIamConfAsync(
-            "custom-audit",
             args.Config,
             cancellationToken);
     }
@@ -32,7 +30,6 @@ public class IAMClient : IIAMClient
         CancellationToken cancellationToken = default)
     {
         return _client.RegenerateUserApiKeyAsync(
-            "custom-audit",
             new UserName { Name = args.Name },
             cancellationToken);
     }
