@@ -17,6 +17,7 @@ public class ObjectsClient : IObjectsClient
             args.CollectionName,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             cancellationToken);
     }
@@ -29,6 +30,7 @@ public class ObjectsClient : IObjectsClient
             args.CollectionName,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.PageSize,
             args.Cursor,
@@ -49,6 +51,7 @@ public class ObjectsClient : IObjectsClient
             args.CollectionName,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.XTenantId,
             args.ExpirationSecs,
@@ -67,13 +70,14 @@ public class ObjectsClient : IObjectsClient
             args.ObjectId,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.ExtraTransParam,
             args.XTenantId,
             ExtractOptions(args).ToAll<ObjectOptions, Anonymous14>(),
             ExtractProps(args),
             cancellationToken);
-            
+
         return obj;
     }
 
@@ -86,6 +90,7 @@ public class ObjectsClient : IObjectsClient
             args.ObjectId,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.XTenantId,
             args.ExpirationSecs,
@@ -106,6 +111,7 @@ public class ObjectsClient : IObjectsClient
             ExtractArchivedOption(args.Archived).ToAll<ArchivedOption, Anonymous16>(),
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.XTenantId,
             cancellationToken);
@@ -119,6 +125,7 @@ public class ObjectsClient : IObjectsClient
             args.CollectionName,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.XTenantId,
             args.ExpirationSecs,
@@ -138,6 +145,7 @@ public class ObjectsClient : IObjectsClient
             ExtractArchivedOption(args.Archived).ToAll<ArchivedOption, Anonymous19>(),
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.Import,
             args.ExportKey,
@@ -155,6 +163,7 @@ public class ObjectsClient : IObjectsClient
             ExtractArchivedOption(args.Archived).ToAll<ArchivedOption, Anonymous20>(),
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.XTenantId,
             args.ObjectIds.Select(id => new ObjectID { Id = id }),
@@ -169,6 +178,7 @@ public class ObjectsClient : IObjectsClient
             args.CollectionName,
             args.Reason.OtherMessage,
             args.Reason.Reason.To<Reason>(),
+            "custom-audit",
             args.ReloadCache,
             args.PageSize,
             args.Cursor,
@@ -182,15 +192,15 @@ public class ObjectsClient : IObjectsClient
 
     private static List<ArchivedOption>? ExtractArchivedOption(bool archived)
     {
-        return archived 
-            ? new List<ArchivedOption> {ArchivedOption.Archived} 
+        return archived
+            ? new List<ArchivedOption> { ArchivedOption.Archived }
             : null;
     }
 
     private static List<ObjectOptions>? ExtractOptions(IObjectOptions args)
     {
         List<ObjectOptions> options = new List<ObjectOptions>();
-        
+
         if (args.Archived)
         {
             options.Add(ObjectOptions.Archived);
@@ -202,7 +212,7 @@ public class ObjectsClient : IObjectsClient
                 ? options
                 : null;
         }
-        
+
         options.Add(ObjectOptions.Unsafe);
         if (unsafeArgs.ShowBuiltins)
         {
@@ -211,14 +221,14 @@ public class ObjectsClient : IObjectsClient
 
         return options;
     }
-    
+
     private static List<string>? ExtractProps(IObjectOptions args)
     {
         if (args is not IObjectOptionsProps propsArgs)
         {
             return null;
         }
-        
+
         var props = propsArgs.Props.ToList();
         if (!props.Any())
         {

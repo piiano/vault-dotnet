@@ -15,6 +15,7 @@ internal class CollectionPropertiesClient : ICollectionPropertiesClient
     {
         return _client.ListCollectionPropertiesAsync(
             args.CollectionName,
+            "custom-audit",
             args.ShowBuiltins.ToOption<Anonymous11>(),
             cancellationToken);
     }
@@ -25,6 +26,7 @@ internal class CollectionPropertiesClient : ICollectionPropertiesClient
     {
         return _client.AddCollectionPropertyAsync(
             args.CollectionName,
+            "custom-audit",
             args.PropertyName,
             args.Property,
             cancellationToken);
@@ -36,6 +38,7 @@ internal class CollectionPropertiesClient : ICollectionPropertiesClient
     {
         return _client.GetCollectionPropertyAsync(
             args.CollectionName,
+            "custom-audit",
             args.PropertyName,
             cancellationToken);
     }
@@ -45,9 +48,10 @@ internal class CollectionPropertiesClient : ICollectionPropertiesClient
         CancellationToken cancellationToken = default)
     {
         return _client.UpdateCollectionPropertyAsync(
-            args.CollectionName, 
-            args.PropertyName, 
-            args.Property, 
+            args.CollectionName,
+            "custom-audit",
+            args.PropertyName,
+            args.Property,
             cancellationToken);
     }
 
@@ -56,8 +60,9 @@ internal class CollectionPropertiesClient : ICollectionPropertiesClient
         CancellationToken cancellationToken = default)
     {
         return _client.DeleteCollectionPropertyAsync(
-            args.CollectionName, 
-            args.PropertyName, 
+            args.CollectionName,
+            "custom-audit",
+            args.PropertyName,
             cancellationToken);
     }
 }
